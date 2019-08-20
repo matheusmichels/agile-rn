@@ -1,11 +1,19 @@
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import {
+  createAppContainer,
+  createSwitchNavigator,
+  createStackNavigator,
+} from 'react-navigation';
 
 import Home from '~/screens/Home';
-import Login from '~/screens/Auth';
+import Login from '~/screens/Login';
+import Register from '~/screens/Register';
 
 const Routes = createAppContainer(
   createSwitchNavigator({
-    Login,
+    Auth: createStackNavigator({
+      Login,
+      Register,
+    }),
     Home,
   })
 );

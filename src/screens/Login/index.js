@@ -2,19 +2,27 @@ import React from 'react';
 import { Alert } from 'react-native';
 import PropTypes from 'prop-types';
 
-import Layout from './Auth';
+import Layout from './Login';
 
-export default function Auth({ navigation }) {
+export default function Signin({ navigation }) {
   function handleLogin(data) {
     Alert.alert('Aviso', JSON.stringify(data));
     navigation.navigate('Home');
   }
 
-  return <Layout onLogin={handleLogin} />;
+  function handleRegister() {
+    navigation.navigate('Register');
+  }
+
+  return <Layout onLogin={handleLogin} onRegister={handleRegister} />;
 }
 
-Auth.propTypes = {
+Signin.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
   }).isRequired,
+};
+
+Signin.navigationOptions = {
+  header: null,
 };

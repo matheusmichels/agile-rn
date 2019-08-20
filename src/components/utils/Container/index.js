@@ -1,11 +1,37 @@
-import styled from 'styled-components/native';
+import React from 'react';
+import { ScrollView } from 'react-native';
+import PropTypes from 'prop-types';
 
-const Container = styled.View`
-  flex: ${props => (props.full ? 1 : 'none')};
-  background-color: ${props => props.color || 'transparent'};
-  align-items: ${props => (props.align ? 'center' : 'flex-start')};
-  justify-content: ${props => (props.justify ? 'center' : 'flex-start')};
-  flex-flow: ${props => (props.row ? 'row' : 'column')};
-`;
+import { Wrapper, SafeWrapper } from './styles';
 
-export default Container;
+export default function Container({ safe, scroll, ...rest }) {
+  if (safe && scroll) {
+    return (
+      <ScrollView>
+        <SafeWrapper {...rest} />
+      </ScrollView>
+    );
+  }
+  if (safe) {
+    return <SafeWrapper {...rest} />;
+  }
+  if (scroll) {
+    return (
+      <ScrollView>
+        <Wrapper {...rest} />
+      </ScrollView>
+    );
+  }
+
+  return <Wrapper {...rest} />;
+}
+
+Container.defaultProps = {
+  safe: false,
+  scroll: false,
+};
+
+Container.propTypes = {
+  safe: PropTypes.bool,
+  scroll: PropTypes.bool,
+};
