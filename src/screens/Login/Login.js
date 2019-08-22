@@ -3,7 +3,7 @@ import { Button } from 'react-native-paper';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 
-import { Block, Form } from '~/components';
+import { Block, Form, Text } from '~/components';
 import Input from '~/components/utils/Input';
 
 const schema = yup.object().shape({
@@ -17,6 +17,9 @@ const schema = yup.object().shape({
 export default function Layout({ onLogin, onRegister }) {
   return (
     <Block full align justify safe>
+      <Text h3 grey2>
+        Agile RN
+      </Text>
       <Form
         schema={schema}
         onSubmit={onLogin}
