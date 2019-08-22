@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 
-import { Container, Form } from '~/components';
+import { Block, Form } from '~/components';
 import Input from '~/components/utils/Input';
 
 const schema = yup.object().shape({
@@ -20,7 +20,7 @@ const schema = yup.object().shape({
 
 export default function Layout({ onRegister }) {
   return (
-    <Container full align justify safe>
+    <Block full align justify safe>
       <Form
         schema={schema}
         onSubmit={onRegister}
@@ -36,7 +36,7 @@ export default function Layout({ onRegister }) {
           secureTextEntry
         />
       </Form>
-    </Container>
+    </Block>
   );
 }
 

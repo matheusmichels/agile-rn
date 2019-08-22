@@ -4,7 +4,7 @@ import { TextInputMask } from 'react-native-masked-text';
 import PropTypes from 'prop-types';
 
 import { FormContext } from '../Form';
-import Container from '../Container';
+import Block from '../Block';
 import { Input as TextInput } from './styles';
 
 function Input({ name, type, ...rest }, ref) {
@@ -12,7 +12,7 @@ function Input({ name, type, ...rest }, ref) {
 
   return (
     <>
-      <Container row>
+      <Block row>
         {type ? (
           <TextInput
             value={values[name]}
@@ -38,7 +38,7 @@ function Input({ name, type, ...rest }, ref) {
             ref={ref}
           />
         )}
-      </Container>
+      </Block>
       {<Text>{errors[name]}</Text>}
     </>
   );

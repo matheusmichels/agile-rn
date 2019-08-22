@@ -3,7 +3,7 @@ import { Button } from 'react-native-paper';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 
-import { Container, Form } from '~/components';
+import { Block, Form } from '~/components';
 import Input from '~/components/utils/Input';
 
 const schema = yup.object().shape({
@@ -16,7 +16,7 @@ const schema = yup.object().shape({
 
 export default function Layout({ onLogin, onRegister }) {
   return (
-    <Container full align justify safe>
+    <Block full align justify safe>
       <Form
         schema={schema}
         onSubmit={onLogin}
@@ -27,7 +27,7 @@ export default function Layout({ onLogin, onRegister }) {
         <Input name="password" label="Senha" secureTextEntry />
       </Form>
       <Button onPress={onRegister}>Cadastrar-se</Button>
-    </Container>
+    </Block>
   );
 }
 

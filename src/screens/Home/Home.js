@@ -2,13 +2,13 @@ import React from 'react';
 import { Button } from 'react-native-paper';
 import PropTypes from 'prop-types';
 
-import { Container } from '~/components';
+import { Block } from '~/components';
 
 export default function Layout({ onLogout }) {
   return (
-    <Container full align justify>
+    <Block full align justify safe>
       <Button onPress={onLogout}>Ir para login</Button>
-    </Container>
+    </Block>
   );
 }
 

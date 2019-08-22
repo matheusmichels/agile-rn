@@ -2,7 +2,7 @@ import React, { useState, createContext } from 'react';
 import { Button } from 'react-native-paper';
 import PropTypes from 'prop-types';
 
-import Container from '~/components/utils/Container';
+import Block from '~/components/utils/Block';
 
 export const FormContext = createContext();
 
@@ -46,7 +46,7 @@ export default function Form({
 
   return (
     <FormContext.Provider value={{ values, errors, onChange: handleChange }}>
-      <Container {...rest}>
+      <Block {...rest}>
         {children}
         <Button
           mode="contained"
@@ -55,7 +55,7 @@ export default function Form({
         >
           {buttonLabel}
         </Button>
-      </Container>
+      </Block>
     </FormContext.Provider>
   );
 }
