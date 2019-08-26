@@ -1,13 +1,15 @@
 import React from 'react';
-import { Button } from 'react-native-paper';
+import { TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { Block } from '~/components';
+import { Block, Text } from '~/components';
 
 export default function Layout({ onLogout }) {
   return (
     <Block full align justify safe>
-      <Button onPress={onLogout}>Ir para login</Button>
+      <TouchableOpacity onPress={onLogout}>
+        <Text>Ir para login</Text>
+      </TouchableOpacity>
     </Block>
   );
 }

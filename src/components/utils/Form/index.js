@@ -1,8 +1,9 @@
 import React, { useState, createContext } from 'react';
-import { Button } from 'react-native-paper';
+import { TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Block from '~/components/utils/Block';
+import Text from '~/components/utils/Text';
 
 export const FormContext = createContext();
 
@@ -48,13 +49,12 @@ export default function Form({
     <FormContext.Provider value={{ values, errors, onChange: handleChange }}>
       <Block {...rest}>
         {children}
-        <Button
-          mode="contained"
+        <TouchableOpacity
           onPress={handleSubmit}
           style={{ alignSelf: 'center' }}
         >
-          {buttonLabel}
-        </Button>
+          <Text>{buttonLabel}</Text>
+        </TouchableOpacity>
       </Block>
     </FormContext.Provider>
   );

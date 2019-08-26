@@ -1,20 +1,20 @@
 import React, { useContext, forwardRef } from 'react';
 import { Text } from 'react-native';
-import { TextInputMask } from 'react-native-masked-text';
 import PropTypes from 'prop-types';
 
 import { FormContext } from '../Form';
 import Block from '../Block';
-import { Input as TextInput } from './styles';
+import { Input as TextInput, MaskedInput } from './styles';
 
-function Input({ name, type, ...rest }, ref) {
+function Input({ name, label, type, ...rest }, ref) {
   const { values, errors, onChange } = useContext(FormContext);
 
   return (
     <>
+      {label && <Text>{label}</Text>}
       <Block row>
         {type ? (
-          <TextInput
+          <MaskedInput
             value={values[name]}
             onChangeText={value =>
               onChange({
@@ -22,8 +22,9 @@ function Input({ name, type, ...rest }, ref) {
                 value,
               })
             }
-            render={props => <TextInputMask type={type} {...props} ref={ref} />}
+            type={type}
             {...rest}
+            ref={ref}
           />
         ) : (
           <TextInput
@@ -45,11 +46,13 @@ function Input({ name, type, ...rest }, ref) {
 }
 
 Input.defaultProps = {
+  label: null,
   type: null,
 };
 
 Input.propTypes = {
   name: PropTypes.string.isRequired,
+  label: PropTypes.string,
   type: PropTypes.string,
 };
 

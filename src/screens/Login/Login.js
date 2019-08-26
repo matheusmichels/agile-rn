@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-native-paper';
+import { TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 
@@ -26,10 +26,12 @@ export default function Layout({ onLogin, onRegister }) {
         buttonLabel="Entrar"
         style={{ padding: 20 }}
       >
-        <Input name="email" label="E-mail" keyboardType="email-address" />
+        <Input name="email" label="E-mail" />
         <Input name="password" label="Senha" secureTextEntry />
       </Form>
-      <Button onPress={onRegister}>Cadastrar-se</Button>
+      <TouchableOpacity onPress={onRegister}>
+        <Text>Cadastrar-se</Text>
+      </TouchableOpacity>
     </Block>
   );
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import { StatusBar, YellowBox } from 'react-native';
-import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { Provider } from 'react-redux';
 
 import store from '~/store';
@@ -15,10 +14,8 @@ if (__DEV__) {
 // root
 const App = () => (
   <Provider store={store}>
-    <PaperProvider theme={DefaultTheme}>
-      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
-      <Routes />
-    </PaperProvider>
+    <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+    <Routes />
   </Provider>
 );
 
