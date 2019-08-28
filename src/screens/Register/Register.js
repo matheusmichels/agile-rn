@@ -25,7 +25,7 @@ export default function Layout({ onRegister }) {
         schema={schema}
         onSubmit={onRegister}
         buttonLabel="Criar conta"
-        style={{ padding: 20 }}
+        distance={[20]}
       >
         <Input name="name" label="Nome completo" />
         <Input name="email" label="E-mail" keyboardType="email-address" />

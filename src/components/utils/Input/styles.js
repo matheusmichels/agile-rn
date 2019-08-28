@@ -2,22 +2,20 @@ import styled from 'styled-components/native';
 import { TextInput } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
 
-export const MaskedInput = styled(TextInputMask).attrs({
-  underlineColor: 'transparent',
+export const Input = styled(TextInput).attrs({
   autoCorrect: false,
   autoCapitalize: 'none',
 })`
-  flex: 1;
-  height: 45px;
+  width: 100%;
+  height: 40px;
   border-bottom-width: 1px;
 `;
 
-export const Input = styled(TextInput).attrs({
-  underlineColor: 'transparent',
+export const MaskedInput = styled(TextInputMask).attrs({
   autoCorrect: false,
   autoCapitalize: 'none',
 })`
-  flex: 1;
-  height: 45px;
+  width: 100%;
+  height: 40px;
   border-bottom-width: 1px;
 `;

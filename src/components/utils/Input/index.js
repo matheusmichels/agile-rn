@@ -1,9 +1,9 @@
 import React, { useContext, forwardRef } from 'react';
-import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { FormContext } from '../Form';
 import Block from '../Block';
+import Text from '../Text';
 import { Input as TextInput, MaskedInput } from './styles';
 
 function Input({ name, label, type, ...rest }, ref) {
@@ -11,36 +11,36 @@ function Input({ name, label, type, ...rest }, ref) {
 
   return (
     <>
-      {label && <Text>{label}</Text>}
-      <Block row>
-        {type ? (
-          <MaskedInput
-            value={values[name]}
-            onChangeText={value =>
-              onChange({
-                name,
-                value,
-              })
-            }
-            type={type}
-            {...rest}
-            ref={ref}
-          />
-        ) : (
-          <TextInput
-            value={values[name]}
-            onChangeText={value =>
-              onChange({
-                name,
-                value,
-              })
-            }
-            {...rest}
-            ref={ref}
-          />
-        )}
+      <Block distance={[0, 5]}>{label && <Text>{label}</Text>}</Block>
+      {type ? (
+        <MaskedInput
+          value={values[name]}
+          onChangeText={value =>
+            onChange({
+              name,
+              value,
+            })
+          }
+          type={type}
+          {...rest}
+          ref={ref}
+        />
+      ) : (
+        <TextInput
+          value={values[name]}
+          onChangeText={value =>
+            onChange({
+              name,
+              value,
+            })
+          }
+          {...rest}
+          ref={ref}
+        />
+      )}
+      <Block distance={[0, 5]}>
+        <Text grey3>{errors[name]}</Text>
       </Block>
-      {<Text>{errors[name]}</Text>}
     </>
   );
 }

@@ -24,7 +24,7 @@ export default function Layout({ onLogin, onRegister }) {
         schema={schema}
         onSubmit={onLogin}
         buttonLabel="Entrar"
-        style={{ padding: 20 }}
+        distance={[20]}
       >
         <Input name="email" label="E-mail" />
         <Input name="password" label="Senha" secureTextEntry />
