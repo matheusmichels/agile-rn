@@ -3,8 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 
-import { Block, Form, Text } from '~/components';
-import Input from '~/components/utils/Input';
+import { Block, Form, Input, Text } from '~/components';
 
 const schema = yup.object().shape({
   name: yup.string().required('O nome deve ser preenchido'),
@@ -33,10 +32,11 @@ export default function Layout({ onRegister }) {
           label="Confirmação de senha"
           secureTextEntry
         />
+
+        <TouchableOpacity onPress={() => formRef.current.send()}>
+          <Text>Criar conta</Text>
+        </TouchableOpacity>
       </Form>
-      <TouchableOpacity onPress={() => formRef.current.validate()}>
-        <Text>Criar conta</Text>
-      </TouchableOpacity>
     </Block>
   );
 }

@@ -1,9 +1,8 @@
 ## Starting
 
-- git clone https://github.com/matheusmichels/agile-rn.git
-- cd agile-rn
-- yarn
-- react-native run-android
+```js
+react-native init ${projectName} --template agile-rn
+```
 
 ## Changing app icon/name
 

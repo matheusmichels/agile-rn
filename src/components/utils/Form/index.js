@@ -43,7 +43,7 @@ function Form({ children, schema, onSubmit, buttonLabel, ...rest }, ref) {
   }
 
   useImperativeHandle(ref, () => ({
-    validate() {
+    send() {
       handleValidate();
     },
   }));
@@ -54,7 +54,6 @@ function Form({ children, schema, onSubmit, buttonLabel, ...rest }, ref) {
         values,
         errors,
         onChange: handleChange,
-        onValidate: handleValidate,
       }}
     >
       <Block {...rest}>{children}</Block>

@@ -3,8 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 
-import { Block, Form, Text } from '~/components';
-import Input from '~/components/utils/Input';
+import { Block, Form, Input, Text } from '~/components';
 
 const schema = yup.object().shape({
   email: yup
@@ -22,13 +21,16 @@ export default function Layout({ onLogin, onRegister }) {
       <Text h3 grey2>
         Agile RN
       </Text>
+
       <Form schema={schema} onSubmit={onLogin} distance={[20]} ref={formRef}>
         <Input name="email" label="E-mail" />
         <Input name="password" label="Senha" secureTextEntry />
+
+        <TouchableOpacity onPress={() => formRef.current.send()}>
+          <Text>Entrar</Text>
+        </TouchableOpacity>
       </Form>
-      <TouchableOpacity onPress={() => formRef.current.validate()}>
-        <Text>Entrar</Text>
-      </TouchableOpacity>
+
       <TouchableOpacity onPress={onRegister}>
         <Text>Cadastrar-se</Text>
       </TouchableOpacity>
