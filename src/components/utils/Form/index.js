@@ -1,19 +1,16 @@
-import React, { useState, createContext } from 'react';
-import { TouchableOpacity } from 'react-native';
+import React, {
+  useState,
+  createContext,
+  forwardRef,
+  useImperativeHandle,
+} from 'react';
 import PropTypes from 'prop-types';
 
 import Block from '~/components/utils/Block';
-import Text from '~/components/utils/Text';
 
 export const FormContext = createContext();
 
-export default function Form({
-  children,
-  schema,
-  onSubmit,
-  buttonLabel,
-  ...rest
-}) {
+function Form({ children, schema, onSubmit, buttonLabel, ...rest }, ref) {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
 
@@ -24,7 +21,7 @@ export default function Form({
     }));
   }
 
-  function handleSubmit() {
+  function handleValidate() {
     if (schema) {
       schema
         .validate(values, { abortEarly: false, stripUnknown: true })
@@ -45,17 +42,22 @@ export default function Form({
     }
   }
 
+  useImperativeHandle(ref, () => ({
+    validate() {
+      handleValidate();
+    },
+  }));
+
   return (
-    <FormContext.Provider value={{ values, errors, onChange: handleChange }}>
-      <Block {...rest}>
-        {children}
-        <TouchableOpacity
-          onPress={handleSubmit}
-          style={{ alignSelf: 'center' }}
-        >
-          <Text>{buttonLabel}</Text>
-        </TouchableOpacity>
-      </Block>
+    <FormContext.Provider
+      value={{
+        values,
+        errors,
+        onChange: handleChange,
+        onValidate: handleValidate,
+      }}
+    >
+      <Block {...rest}>{children}</Block>
     </FormContext.Provider>
   );
 }
@@ -72,3 +74,5 @@ Form.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   buttonLabel: PropTypes.string.isRequired,
 };
+
+export default forwardRef(Form);

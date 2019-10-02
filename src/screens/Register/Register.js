@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 
-import { Block, Form } from '~/components';
+import { Block, Form, Text } from '~/components';
 import Input from '~/components/utils/Input';
 
 const schema = yup.object().shape({
@@ -19,14 +20,11 @@ const schema = yup.object().shape({
 });
 
 export default function Layout({ onRegister }) {
+  const formRef = useRef();
+
   return (
     <Block full align justify safe>
-      <Form
-        schema={schema}
-        onSubmit={onRegister}
-        buttonLabel="Criar conta"
-        distance={[20]}
-      >
+      <Form schema={schema} onSubmit={onRegister} distance={[20]} ref={formRef}>
         <Input name="name" label="Nome completo" />
         <Input name="email" label="E-mail" keyboardType="email-address" />
         <Input name="password" label="Senha" secureTextEntry />
@@ -36,6 +34,9 @@ export default function Layout({ onRegister }) {
           secureTextEntry
         />
       </Form>
+      <TouchableOpacity onPress={() => formRef.current.validate()}>
+        <Text>Criar conta</Text>
+      </TouchableOpacity>
     </Block>
   );
 }
