@@ -1,18 +1,52 @@
-## Starting
+## **Overview**
 
-```js
-react-native init ${projectName} --template agile-rn
+**Agile RN** is a **React Native template** that was created to speed up project start-up as well as make application development easier.
+
+## **Starting a project**
+
+```
+react-native init AwesomeProject --template agile-rn
 ```
 
-## Changing app icon/name
+## **Features** (w/ examples)
 
-- Android
+- **Easy form creation / validation**
 
-  - Icon
-    - https://apetools.webprofusion.com (Import icon/download bundle zip)
-    - Replace icons in android\app\src\main\res
-  - Name
+```javascript
+import React, { useRef } from 'react';
+import { TouchableOpacity } from 'react-native';
+import * as yup from 'yup';
 
-    - android\app\src\main\res\values\strings.xml
+import { Form, Input, Text } from '~/components';
 
-    `<string name="app_name">${name}</string>`
+const schema = yup.object().shape({
+  email: yup.string().required('O e-mail deve ser preenchido'),
+  password: yup.string().required('A senha deve ser preenchida'),
+});
+
+export default function Auth() {
+  const formRef = useRef();
+
+  function handleSubmit(data) {
+    console.log(data);
+
+    /*
+       {
+        email: 'example@mail.com',
+        password: '123'
+       }
+    */
+  }
+
+  return (
+    <Form schema={schema} onSubmit={handleSubmit} ref={formRef}>
+      <Input name="email" label="E-mail" />
+      <Input name="password" label="Senha" />
+
+      <TouchableOpacity onPress={() => formRef.current.send()}>
+        <Text>Entrar</Text>
+      </TouchableOpacity>
+    </Form>
+  );
+}
+```
