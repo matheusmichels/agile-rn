@@ -4,14 +4,18 @@ import PropTypes from 'prop-types';
 import { FormContext } from '../Form';
 import Block from '../Block';
 import Text from '../Text';
-import { Input as TextInput, MaskedInput } from './styles';
+import { TextInput, MaskedInput } from './styles';
 
 function Input({ name, label, type, ...rest }, ref) {
   const { values, errors, onChange } = useContext(FormContext);
 
   return (
     <>
-      <Block distance={[0, 5]}>{label && <Text>{label}</Text>}</Block>
+      {label && (
+        <Block distance={[0, 5]}>
+          <Text>{label}</Text>
+        </Block>
+      )}
       {type ? (
         <MaskedInput
           value={values[name]}

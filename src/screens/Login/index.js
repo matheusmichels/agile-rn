@@ -6,8 +6,7 @@ import Layout from './Login';
 
 export default function Signin({ navigation }) {
   function handleLogin(data) {
-    Alert.alert('Aviso', JSON.stringify(data));
-    navigation.navigate('Home');
+    Alert.alert('Info', JSON.stringify(data));
   }
 
   function handleRegister() {

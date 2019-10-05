@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { TextInputMask } from 'react-native-masked-text';
 
-export const Input = styled.TextInput.attrs({
+export const TextInput = styled.TextInput.attrs({
   autoCorrect: false,
   autoCapitalize: 'none',
 })`
