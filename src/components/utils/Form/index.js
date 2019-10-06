@@ -10,7 +10,7 @@ import Block from '~/components/utils/Block';
 
 export const FormContext = createContext();
 
-function Form({ children, schema, onSubmit, buttonLabel, ...rest }, ref) {
+function Form({ children, schema, onSubmit, ...rest }, ref) {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
 
@@ -71,7 +71,6 @@ Form.propTypes = {
     validate: PropTypes.func,
   }),
   onSubmit: PropTypes.func.isRequired,
-  buttonLabel: PropTypes.string.isRequired,
 };
 
 export default forwardRef(Form);

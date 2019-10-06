@@ -2,11 +2,11 @@ import React from 'react';
 import { StatusBar, YellowBox } from 'react-native';
 import { Provider } from 'react-redux';
 
-import store from '~/store';
+import '~/config/ReactotronConfig';
 
+import store from '~/store';
 import Routes from '~/routes';
 
-// developer mode
 if (__DEV__) {
   YellowBox.ignoreWarnings(['Remote debugger']);
 }

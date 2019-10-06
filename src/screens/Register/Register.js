@@ -3,7 +3,7 @@ import { Button } from 'react-native';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 
-import { Block, Form, Input } from '~/components';
+import { Block, Form, Input, Picker } from '~/components';
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -16,6 +16,10 @@ const schema = yup.object().shape({
     .string()
     .required()
     .oneOf([yup.ref('password'), null], "passwords don't match"),
+  sex: yup
+    .string()
+    .required()
+    .nullable(),
 });
 
 export default function Layout({ onRegister }) {
@@ -35,8 +39,13 @@ export default function Layout({ onRegister }) {
         <Input name="password" label="Password" secureTextEntry />
         <Input
           name="confirmPassword"
-          label="Confirm password"
+          label="Confirm Password"
           secureTextEntry
+        />
+        <Picker
+          name="sex"
+          label="Sex"
+          data={[{ id: 1, label: 'Male' }, { id: 2, label: 'Female' }]}
         />
 
         <Button title="Create account" onPress={() => formRef.current.send()} />
