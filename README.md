@@ -8,23 +8,20 @@
 react-native init AwesomeProject --template agile-rn
 ```
 
-## **Features** (w/ examples)
+## **Features (w/ examples)**
 
 - **Easy form creation / validation**
 
 ```javascript
 import React, { useRef } from 'react';
-import { Button } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import * as yup from 'yup';
 
-import { Form, Input } from '~/components';
+import { Form, Input, Text } from '~/components';
 
 const schema = yup.object().shape({
-  email: yup
-    .string()
-    .email()
-    .required(),
-  password: yup.string().required(),
+  email: yup.string().required('O e-mail deve ser preenchido'),
+  password: yup.string().required('A senha deve ser preenchida'),
 });
 
 export default function Auth() {
@@ -43,11 +40,32 @@ export default function Auth() {
 
   return (
     <Form schema={schema} onSubmit={handleSubmit} ref={formRef}>
-      <Input name="email" label="Email" />
-      <Input name="password" label="Password" />
+      <Input name="email" label="E-mail" />
+      <Input name="password" label="Senha" />
 
-      <Button title="Enter" onPress={() => formRef.current.send()} />
+      <TouchableOpacity onPress={() => formRef.current.send()}>
+        <Text>Entrar</Text>
+      </TouchableOpacity>
     </Form>
   );
 }
 ```
+
+## **Dependencies**
+
+- **Async Storage**
+- **Prop Types**
+- **React Native Gesture Handler**
+- **React Native Masked Text**
+- **React Native Vectors Icons**
+- **React Navigation**
+- **Redux**
+- **Redux Saga**
+- **Styled Components**
+- **Yup**
+
+## **Dev Dependencies**
+
+- **Eslint**
+- **Prettier**
+- **Reactotron**
