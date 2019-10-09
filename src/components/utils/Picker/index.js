@@ -7,11 +7,11 @@ import Text from '../Text';
 
 import RNPicker from './styles';
 
-export default function Picker({ name, label, data, ...rest }) {
+export default function Picker({ name, label, data, weight, ...rest }) {
   const { values, errors, onChange } = useContext(FormContext);
 
   return (
-    <Block>
+    <Block weight={weight}>
       {label && (
         <Block distance={[0, 5]}>
           <Text>{label}</Text>
@@ -40,6 +40,7 @@ export default function Picker({ name, label, data, ...rest }) {
 
 Picker.defaultProps = {
   label: null,
+  weight: null,
 };
 
 Picker.propTypes = {
@@ -51,4 +52,5 @@ Picker.propTypes = {
       id: PropTypes.number,
     })
   ).isRequired,
+  weight: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
 };

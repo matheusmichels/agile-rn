@@ -6,11 +6,11 @@ import Block from '../Block';
 import Text from '../Text';
 import { TextInput, MaskedInput } from './styles';
 
-function Input({ name, label, type, ...rest }, ref) {
+function Input({ name, label, type, weight, ...rest }, ref) {
   const { values, errors, onChange } = useContext(FormContext);
 
   return (
-    <>
+    <Block weight={weight}>
       {label && (
         <Block distance={[0, 5]}>
           <Text>{label}</Text>
@@ -45,19 +45,21 @@ function Input({ name, label, type, ...rest }, ref) {
       <Block distance={[0, 5]}>
         <Text grey3>{errors[name]}</Text>
       </Block>
-    </>
+    </Block>
   );
 }
 
 Input.defaultProps = {
   label: null,
   type: null,
+  weight: null,
 };
 
 Input.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
   type: PropTypes.string,
+  weight: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
 };
 
 export default forwardRef(Input);

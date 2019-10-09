@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 
 import Block from '~/components/utils/Block';
 
+import { KeyboardView } from './styles';
+
 export const FormContext = createContext();
 
 function Form({ children, schema, onSubmit, ...rest }, ref) {
@@ -56,7 +58,9 @@ function Form({ children, schema, onSubmit, ...rest }, ref) {
         onChange: handleChange,
       }}
     >
-      <Block {...rest}>{children}</Block>
+      <Block {...rest}>
+        <KeyboardView>{children}</KeyboardView>
+      </Block>
     </FormContext.Provider>
   );
 }

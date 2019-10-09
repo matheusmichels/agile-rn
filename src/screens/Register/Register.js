@@ -3,7 +3,7 @@ import { Button } from 'react-native';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 
-import { Block, Form, Input, Picker } from '~/components';
+import { Block, Form, Input } from '~/components';
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -16,23 +16,20 @@ const schema = yup.object().shape({
     .string()
     .required()
     .oneOf([yup.ref('password'), null], "passwords don't match"),
-  sex: yup
-    .string()
-    .required()
-    .nullable(),
+  city: yup.string().required(),
+  code: yup.string().required(),
 });
 
 export default function Layout({ onRegister }) {
   const formRef = useRef();
 
   return (
-    <Block full justify safe>
+    <Block weight align justify safe>
       <Form
         schema={schema}
         onSubmit={onRegister}
         ref={formRef}
-        distance={[20]}
-        align
+        distance={[0, 20]}
       >
         <Input name="name" label="Name" />
         <Input name="email" label="Email" keyboardType="email-address" />
@@ -42,11 +39,11 @@ export default function Layout({ onRegister }) {
           label="Confirm Password"
           secureTextEntry
         />
-        <Picker
-          name="sex"
-          label="Sex"
-          data={[{ id: 1, label: 'Male' }, { id: 2, label: 'Female' }]}
-        />
+
+        <Block row>
+          <Input weight={3} name="city" label="City" />
+          <Input weight={2} name="code" label="Postal Code" />
+        </Block>
 
         <Button title="Create account" onPress={() => formRef.current.send()} />
       </Form>

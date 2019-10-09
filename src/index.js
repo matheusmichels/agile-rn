@@ -8,7 +8,7 @@ import store from '~/store';
 import Routes from '~/routes';
 
 if (__DEV__) {
-  YellowBox.ignoreWarnings(['Remote debugger']);
+  YellowBox.ignoreWarnings(['Remote debugger', 'forwardRef']);
 }
 
 // root

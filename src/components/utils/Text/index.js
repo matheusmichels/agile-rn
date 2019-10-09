@@ -4,6 +4,7 @@ import { colors } from '~/styles';
 const Text = styled.Text`
   color: ${props => color(props)};
   font-size: ${props => size(props)}px;
+  font-weight: ${props => (props.bold ? 'bold' : 'normal')};
 `;
 
 function color(props) {

@@ -1,6 +1,18 @@
 import styled from 'styled-components/native';
 import { SafeAreaView } from 'react-navigation';
 
+function align(prop) {
+  if (typeof prop === 'string') {
+    return prop;
+  }
+
+  if (prop) {
+    return 'center';
+  }
+
+  return 'flex-start';
+}
+
 function justify(just) {
   if (typeof just === 'string') {
     return just;
@@ -12,26 +24,38 @@ function justify(just) {
   return 'flex-start';
 }
 
-function padding(dist = []) {
-  switch (dist.length || 0) {
+function padding(prop = []) {
+  switch (prop.length || 0) {
     case 1:
-      return `${dist[0]}px`;
+      return `${prop[0]}px`;
     case 2:
-      return `${dist[0]}px ${dist[1]}px`;
+      return `${prop[0]}px ${prop[1]}px`;
     case 3:
-      return `${dist[0]}px ${dist[1]}px ${dist[2]}px`;
+      return `${prop[0]}px ${prop[1]}px ${prop[2]}px`;
     case 4:
-      return `${dist[0]}px ${dist[1]}px ${dist[2]}px ${dist[3]}px`;
+      return `${prop[0]}px ${prop[1]}px ${prop[2]}px ${prop[3]}px`;
     default:
       return '0px';
   }
 }
 
+function flex(prop) {
+  if (typeof prop === 'number') {
+    return prop;
+  }
+
+  if (prop) {
+    return 1;
+  }
+
+  return 'none';
+}
+
 export const Wrapper = styled.View`
-  flex: ${props => (props.full ? 1 : 'none')};
+  flex: ${props => flex(props.weight)};
   width: 100%;
   background-color: ${props => props.color || 'transparent'};
-  align-items: ${props => (props.align ? 'center' : 'flex-start')};
+  align-items: ${props => align(props.align)};
   justify-content: ${props => justify(props.justify)};
   flex-flow: ${props => (props.row ? 'row' : 'column')};
   padding: ${props => padding(props.distance)};
@@ -40,7 +64,7 @@ export const Wrapper = styled.View`
 export const SafeWrapper = styled(SafeAreaView).attrs({
   forseInset: { bottom: 'never' },
 })`
-  flex: ${props => (props.full ? 1 : 'none')};
+  flex: ${props => flex(props.weight)};
   width: 100%;
   background-color: ${props => props.color || 'transparent'};
   align-items: ${props => (props.align ? 'center' : 'flex-start')};

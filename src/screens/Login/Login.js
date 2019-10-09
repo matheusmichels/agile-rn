@@ -17,18 +17,12 @@ export default function Layout({ onLogin, onRegister }) {
   const formRef = useRef();
 
   return (
-    <Block full align justify safe>
+    <Block weight align justify safe>
       <Text h2 grey3>
         AGILE RN
       </Text>
 
-      <Form
-        schema={schema}
-        onSubmit={onLogin}
-        ref={formRef}
-        distance={[20]}
-        align
-      >
+      <Form schema={schema} onSubmit={onLogin} ref={formRef} distance={[0, 20]}>
         <Input name="email" label="Email" />
         <Input name="password" label="Password" secureTextEntry />
 
