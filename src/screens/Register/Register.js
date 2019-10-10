@@ -24,12 +24,13 @@ export default function Layout({ onRegister }) {
   const formRef = useRef();
 
   return (
-    <Block weight align justify safe>
+    <Block container align justify>
       <Form
         schema={schema}
         onSubmit={onRegister}
         ref={formRef}
         distance={[0, 20]}
+        align
       >
         <Input name="name" label="Name" />
         <Input name="email" label="Email" keyboardType="email-address" />

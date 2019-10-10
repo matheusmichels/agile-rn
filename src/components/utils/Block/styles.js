@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { Platform } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 
 function align(prop) {
@@ -39,12 +40,12 @@ function padding(prop = []) {
   }
 }
 
-function flex(prop) {
-  if (typeof prop === 'number') {
-    return prop;
+function flex(props) {
+  if (typeof props.weight === 'number') {
+    return props.weight;
   }
 
-  if (prop) {
+  if (props.weight || props.container) {
     return 1;
   }
 
@@ -52,7 +53,7 @@ function flex(prop) {
 }
 
 export const Wrapper = styled.View`
-  flex: ${props => flex(props.weight)};
+  flex: ${props => flex(props)};
   width: 100%;
   background-color: ${props => props.color || 'transparent'};
   align-items: ${props => align(props.align)};
@@ -61,14 +62,15 @@ export const Wrapper = styled.View`
   padding: ${props => padding(props.distance)};
 `;
 
-export const SafeWrapper = styled(SafeAreaView).attrs({
-  forseInset: { bottom: 'never' },
+export const SafeView = styled(SafeAreaView).attrs({
+  forceInset: { bottom: 'never' },
 })`
-  flex: ${props => flex(props.weight)};
-  width: 100%;
-  background-color: ${props => props.color || 'transparent'};
-  align-items: ${props => (props.align ? 'center' : 'flex-start')};
-  justify-content: ${props => justify(props.justify)};
-  flex-flow: ${props => (props.row ? 'row' : 'column')};
-  padding: ${props => padding(props.distance)};
+  flex: 1;
+`;
+
+export const KeyboardView = styled.KeyboardAvoidingView.attrs({
+  enabled: Platform.OS === 'ios',
+  behavior: 'padding',
+})`
+  flex: 1;
 `;
