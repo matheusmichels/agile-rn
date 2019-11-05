@@ -10,8 +10,8 @@ import Block from '~/components/utils/Block';
 
 export const FormContext = createContext();
 
-function Form({ children, schema, onSubmit, ...rest }, ref) {
-  const [values, setValues] = useState({});
+function Form({ children, schema, initialData, onSubmit, ...rest }, ref) {
+  const [values, setValues] = useState(initialData || {});
   const [errors, setErrors] = useState({});
 
   function handleChange({ name, value }) {
@@ -63,6 +63,7 @@ function Form({ children, schema, onSubmit, ...rest }, ref) {
 
 Form.defaultProps = {
   schema: null,
+  initialData: null,
 };
 
 Form.propTypes = {
@@ -70,6 +71,7 @@ Form.propTypes = {
   schema: PropTypes.shape({
     validate: PropTypes.func,
   }),
+  initialData: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
 };
 
