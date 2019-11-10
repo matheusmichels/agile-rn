@@ -1,6 +1,6 @@
 {
   "name": "react-native-template-agile-rn",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "author": "Matheus Michels",
   "license": "MIT",
   "keywords": [
@@ -14,6 +14,7 @@
     "eslint",
     "reactotron",
     "redux",
+    "redux saga",
     "axios",
     "prop-types"
   ]
